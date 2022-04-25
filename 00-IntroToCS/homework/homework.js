@@ -2,8 +2,8 @@
 
 function BinarioADecimal(num) {
   // tu codigo aca
-  var suma = 0									//"110"
-var a = String(num) 							//"011"
+  var suma = 0									
+var a = String(num) 							
 var b = ""
 for (var i = a.length - 1; i >= 0; i--) {
 	     b = b + a[i]
@@ -32,7 +32,7 @@ function DecimalABinario(num) {
 		if(p % 2 == 0) {str = str + "0"} 
 		if(p % 2 !== 0){str = str + "1"} ;
 	p = Math.floor(p / 2)
-	}
+	} 
 	var resultado = ""
 	for (var i = str.length - 1; i >= 0 ; i--) {
 		resultado += str[i]
