@@ -31,8 +31,8 @@ function cacheFunction(cb) {
   // usá hasOwnProperty!
   var obj ={}
   function a(num){
-    if (obj.hasOwnProperty(num)) {return obj[num]}
-      obj[num] = cb(num)
+    if (obj.hasOwnProperty(num) == false) {obj[num] = cb(num)}
+      
     return obj[num]
   }
   return a
