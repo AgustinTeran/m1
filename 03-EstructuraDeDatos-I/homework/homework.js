@@ -6,7 +6,12 @@
 function nFactorial(n) {
   // devolvé el factorial de n (n!)
   // ej:
-  // el factorial de 3 es 6 (3 * 2 * 1)
+  // el factorial de 3 es 6 (3 * 2 * 1)  
+  var tot = 1                                                // tot 3
+  if (n <= 0  && n < 1) {return 1}
+    tot = n * tot
+    
+    return tot * nFactorial(n - 1)
 }
 
 function nFibonacci(n) {
@@ -15,6 +20,13 @@ function nFibonacci(n) {
   // nFibonacci(0) // 0  // el elemento 0 es cero
   // nFibonacci(1) // 1 // el elemento 1 es 1
   // nFibonacci(6) // 1 // el elemento 6 es 8
+  var a = [0,1]
+  function fib(){
+    if (a[a.length - 1] > 10000000) {return}
+      a.push(a[a.length - 1] + a[a.length - 2])
+       fib() 
+  } fib()
+  return a[n]
 
 }
 
@@ -25,8 +37,13 @@ function nFibonacci(n) {
 // size: Devuelve el número de elementos que contiene la queue.
 
 function Queue() {
+    this.a = []
+ 
 
 }
+ Queue.prototype.enqueue = function(value){return this.a.push(value)}
+  Queue.prototype.dequeue = function(value){return this.a.shift(value)}
+  Queue.prototype.size = function(){return this.a.length}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
