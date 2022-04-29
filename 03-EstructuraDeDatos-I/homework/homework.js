@@ -20,13 +20,10 @@ function nFibonacci(n) {
   // nFibonacci(0) // 0  // el elemento 0 es cero
   // nFibonacci(1) // 1 // el elemento 1 es 1
   // nFibonacci(6) // 1 // el elemento 6 es 8
-  var a = [0,1]
-  function fib(){
-    if (a[a.length - 1] > 10000000) {return}
-      a.push(a[a.length - 1] + a[a.length - 2])
-       fib() 
-  } fib()
-  return a[n]
+  if (n <= 0) {return 0}
+  if (n == 1 ) {return 1}
+
+  return nFibonacci(n - 1) + nFibonacci(n - 2)
 
 }
 
@@ -38,10 +35,12 @@ function nFibonacci(n) {
 
 function Queue() {
     this.a = []
+
+    this.enqueue = function(value){this.a.push(value)}
  
 
 }
- Queue.prototype.enqueue = function(value){return this.a.push(value)}
+ 
   Queue.prototype.dequeue = function(value){return this.a.shift(value)}
   Queue.prototype.size = function(){return this.a.length}
 
