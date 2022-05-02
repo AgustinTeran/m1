@@ -11,13 +11,58 @@
 // search: Busca un valor dentro de la lista. Puede recibir un valor o una función. Si no hubiera resultados, devuelve null.
 
 function LinkedList() {
-
+	this.head = null
 }
 
 function Node(value){
-
+	this.value = value
+	this.next = null
 }
 
+LinkedList.prototype.add = function(valor){
+	var a = new Node(valor)
+	var señalador = this.head
+
+	if (señalador == null) {this.head = a}
+	else{
+		while(señalador.next !== null){
+			señalador = señalador.next
+		}
+		señalador.next = a
+	}	
+}
+
+LinkedList.prototype.remove = function(){
+	var señalador = this.head
+	var a = ""
+	var b = ""
+	if (señalador == null) {return null}
+	if (señalador.next == null) {a = señalador.value; this.head = null; return a}
+	else{
+		while(señalador.next.next !== null){
+			señalador = señalador.next
+
+		}
+		b = señalador.next.value
+		señalador.next = null
+		return b
+	}
+}
+
+LinkedList.prototype.search = function(algo){
+	var señalador = this.head
+
+	if (señalador == null) {return "nada que buscar"}
+	
+	else{
+		while(señalador !== null){
+			if (typeof algo == "function") {if(algo(señalador.value) == true){return señalador.value}}
+			if (algo == señalador.value) {return señalador.value}
+			señalador = señalador.next
+		}
+	} 
+	return null
+}
 // Hash Table( ver información en: https://es.wikipedia.org/wiki/Tabla_hash)
 // Una Hash table contiene un arreglo de "contenedores" o buckets donde puede guardar información.
 // Para este ejercicio, generar 35 buckets para la Hash Table, y realizar los métodos, get, hasKey
@@ -31,9 +76,34 @@ function Node(value){
 //    - Retornar dicho valor.
 
 function HashTable() {
+	this.buckets = []
+	this.numBuckets = 35
 
 }
+  HashTable.prototype.hash = function(key){
+ 	
+ 	var suma = 0
+ 	for (var i = 0; i < key.length; i++) {
+ 		  suma += key[i].charCodeAt()
+ 	}
+ 	return suma % this.numBuckets
+ }
+  HashTable.prototype.get = function(clave){
+ 	var indice = this.hash(clave)
+ 	if (this.buckets[indice][clave] !== undefined) {return this.buckets[indice][clave]}
 
+
+ }
+ HashTable.prototype.hasKey = function(clave){
+ 	var indice = this.hash(clave)
+ 	if ( this.buckets[indice].hasOwnProperty(clave) == true) {return true}{return false}
+ }
+ HashTable.prototype.set = function(clave,valor){
+ 	if (typeof clave !== "string") {throw TypeError ('Keys must be strings')}
+ 	var indice = this.hash(clave)
+ 	if (this.buckets[indice] == null) {this.buckets[indice] = {}}
+ 	this.buckets[indice][clave] = valor
+ }
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
